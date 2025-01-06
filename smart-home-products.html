@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مجموعه محصولات هوشمند خانه</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+        
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #60a5fa;
+            --text-color: #1f2937;
+            --background-color: #f3f4f6;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .total-price {
+            background: var(--success-color);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .estimate-note {
+            background: var(--warning-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .features {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--background-color);
+            border-radius: 0.5rem;
+        }
+
+        .sensor-details {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .sensor-comparison {
+            margin: 2rem 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            text-align: right;
+        }
+
+        .comparison-table th {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--background-color);
+        }
+
+        .radio-remote {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .specs-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .specs-list li {
+            margin: 0.5rem 0;
+            padding-right: 1.5rem;
+            position: relative;
+        }
+
+        .specs-list li::before {
+            content: "🔹";
+            position: absolute;
+            right: 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header {
+                padding: 1.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .emoji {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .sensor-chart {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: var(--background-color);
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header animate__animated animate__fadeIn">
+            <h1>🏠 سیستم هوشمند خانگی</h1>
+            <p>کنترل هوشمند، آسایش بی‌نظیر</p>
+        </header>
+
+        <div class="products-grid">
+            <div class="product-card animate__animated animate__fadeInUp">
+                <img src="4.png" alt="ESP32" class="product-image">
+                <h3>ماژول ESP32-WROOM-32</h3>
+                <p class="price">154,300 تومان</p>
+                <p>ماژول وای‌فای و بلوتوث با حافظه 4 مگابایت</p>
+                <a href="https://thecaferobot.com/store/esp32-module-wifi-bluetooth-dual-mode" class="button">مشاهده محصول 🛒</a>
+            </div>
+
+            <div class="product-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                <img src="2.jpg" alt="TTP223" class="product-image">
+                <h3>ماژول تاچ خازنی TTP223</h3>
+                <p class="price">30,000 ریال</p>
+                <p>سنسور لمسی با حساسیت قابل تنظیم</p>
+                <a href="https://samamotor.ir/%D9%85%D8%A7%DA%98%D9%88%D9%84-%D9%88-%D8%B3%D9%86%D8%B3%D9%88%D8%B1/4586-%D9%85%D8%A7%DA%98%D9%88%D9%84-%D8%AA%D8%A7%DA%86-%D8%AE%D8%A7%D8%B2%D9%86%DB%8C-ttp223-%D9%85%DB%8C%D9%86%DB%8C.html?utm_medium=PPC&utm_source=Torob" class="button">مشاهده محصول 🛒</a>
+            </div>
+
+            <div class="product-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+                <img src="3.jpg" alt="Smart Switch" class="product-image">
+                <h3>باکس کلید هوشمند چهار پل</h3>
+                <p class="price">365,000 تومان</p>
+                <p>کلید لمسی هوشمند با قاب شیشه‌ای</p>
+                <a href="https://ariaebox.com/product/%d8%a8%d8%a7%da%a9%d8%b3-%da%a9%d9%84%db%8c%d8%af-%d9%87%d9%88%d8%b4%d9%85%d9%86%d8%af-%da%86%d9%87%d8%a7%d8%b1-%d9%be%d9%84-%d9%85%d8%b4%da%a9%db%8c-%d8%a8%d8%a7-%d9%81%d8%b1%db%8c%d9%85-%d9%81%d9%84/" class="button">مشاهده محصول 🛒</a>
+            </div>
+
+            <div class="product-card animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
+                <img src="1.jpeg" alt="DHT11" class="product-image">
+                <h3>سنسور دما و رطوبت DHT11</h3>
+                <p class="price">44,000 تومان</p>
+                <p>سنسور دیجیتال دما و رطوبت</p>
+                <a href="https://thecaferobot.com/store/temprature-sensor-dht11-dfrobot-1" class="button">مشاهده محصول 🛒</a>
+            </div>
+        </div>
+
+        <div class="total-price animate__animated animate__fadeIn">
+            <h2>مجموع قیمت قطعات مشخص شده: 566,300 تومان</h2>
+            
+        </div>
+
+        <section class="features animate__animated animate__fadeIn">
+            <h2>🌟 قابلیت‌های سیستم</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <span class="emoji">📱</span>
+                    <p>کنترل از طریق اپلیکیشن موبایل</p>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji">🕒</span>
+                    <p>زمان‌بندی هوشمند</p>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji">🌡️</span>
+                    <p>کنترل بر اساس دما</p>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji">📡</span>
+                    <p>کنترل از راه دور رادیویی</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="sensor-details animate__animated animate__fadeIn">
+            <h2>🌡️ بررسی تخصصی سنسور دما</h2>
+            
+            <div class="sensor-comparison">
+                <h3>مقایسه سنسورهای DHT11 و PT100</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>ویژگی</th>
+                        <th>DHT11</th>
+                        <th>PT100</th>
+                    </tr>
+                    <tr>
+                        <td>دقت اندازه‌گیری دما</td>
+                        <td>±2°C</td>
+                        <td>±0.5°C</td>
+                    </tr>
+                    <tr>
+                        <td>محدوده دمایی</td>
+                        <td>0 تا 50°C</td>
+                        <td>-200 تا 650°C</td>
+                    </tr>
+                    <tr>
+                        <td>دقت رطوبت</td>
+                        <td>20-80% ±5% RH</td>
+                        <td>ندارد</td>
+                    </tr>
+                    <tr>
+                        <td>زمان پاسخ‌دهی</td>
+                        <td>2 ثانیه</td>
+                        <td>0.5 ثانیه</td>
+                    </tr>
+                    <tr>
+                        <td>قیمت</td>
+                        <td>ارزان (44,000 تومان)</td>
+                        <td>گران (200,000+ تومان)</td>
+                    </tr>
+                    <tr>
+                        <td>نیاز به مدار واسط</td>
+                        <td>خیر</td>
+                        <td>بله</td>
+                    </tr>
+                    <tr>
+                        <td>پروتکل ارتباطی</td>
+                        <td>دیجیتال (Single-wire)</td>
+                        <td>آنالوگ (نیاز به ADC)</td>
+                    </tr>
+                    <tr>
+                        <td>مصرف انرژی</td>
+                        <td>کم (2.5mA)</td>
+                        <td>متوسط (5-10mA)</td>
+                    </tr>
+                </table>
+
+                <div style="margin-top: 2rem">
+                    <h3>چرا DHT11 برای این پروژه مناسب‌تر است:</h3>
+                    <ul class="specs-list">
+                        <li>مقرون به صرفه: قیمت بسیار مناسب‌تر نسبت به PT100</li>
+                        <li>یکپارچگی: اندازه‌گیری همزمان دما و رطوبت</li>
+                        <li>نصب آسان: نیاز به مدار واسط پیچیده ندارد</li>
+                        <li>محدوده دمایی مناسب: برای محیط خانگی کافی است</li>
+                        <li>مصرف انرژی کم: مناسب برای کارکرد طولانی مدت</li>
+                        <li>کتابخانه‌های آماده: پشتیبانی خوب در ESP32</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="radio-remote animate__animated animate__fadeIn">
+            <h2>📡 سیستم کنترل رادیویی</h2>
+            <div class="specs-list">
+                <h3>مشخصات فنی:</h3>
+                <ul>
+                    <li>فرکانس کاری: 433MHz (باند ISM)</li>
+                    <li>برد مؤثر: تا 100 متر در فضای باز</li>
+                    <li>پروتکل کدگذاری: Rolling Code برای امنیت بالا</li>
+                    <li>تعداد کانال‌های قابل کنترل: 4 کانال</li>
+                    <li>ولتاژ کاری: 12V DC</li>
+                    <li>جریان سوئیچینگ رله‌ها: 10A</li>
+                </ul>
+
+                <h3 style="margin-top: 2rem">قابلیت‌های ویژه:</h3>
+                <ul>
+                    <li>قابلیت یادگیری کد ریموت‌های جدید</li>
+                    <li>حافظه EEPROM برای ذخیره تنظیمات</li>
+                    <li>LED نشانگر وضعیت برای هر کانال</li>
+                    <li>محافظت در برابر نویز و تداخل</li>
+                    <li>امکان کنترل همزمان با اپلیکیشن و ریموت</li>
+                </ul>
+            </div>
+
+            <div class="estimate-note" style="margin-top: 2rem">
+                <p>💡 نکته طراحی:</p>
+                <p>برای اطمینان از عملکرد پایدار، طراحی برد شامل موارد زیر خواهد بود:</p>
+                <ul style="margin-top: 0.5rem; list-style: none;">
+                    <li>• فیلترهای نویز برای خطوط تغذیه</li>
+                    <li>• محافظت‌های EMI/EMC</li>
+                    <li>• اپتوکوپلر برای ایزولاسیون</li>
+                    <li>• رگولاتور ولتاژ با حفاظت حرارتی</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__fadeIn');
+                }
+            });
+        });
+
+        document.querySelectorAll('.product-card, .features, .sensor-comparison, .radio-remote').forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
